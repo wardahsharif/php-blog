@@ -99,7 +99,7 @@ if(isset($_POST['register'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
-     $role = $_POST['role'];
+    $role = $_POST['role'];
 
 
   // Connect to the database
@@ -115,7 +115,8 @@ if(isset($_POST['register'])){
     } else {
 
         $insertQuery = "INSERT INTO users (username, email, password, role) VALUES ('$username', '$email', '$hashedPassword', '$role')";
-
+      
+        
     
 
  
@@ -123,8 +124,8 @@ if(isset($_POST['register'])){
       if ($database_connection->query($insertQuery) === TRUE) {
            echo "User registered successfully!";
 
-        /*header('Location: login.php');
-        exit();*/
+        header('Location: login.php');
+        exit();
     } else {
      
         echo "Error: " . $sql . "<br>" . $database_connection->error;
